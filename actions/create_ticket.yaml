@@ -1,5 +1,5 @@
 name: create_ticket
-runner_type: run-python
+runner_type: python-script
 description: Creates a ticket on Zendesk
 enabled: true
 entry_point: create_ticket.py

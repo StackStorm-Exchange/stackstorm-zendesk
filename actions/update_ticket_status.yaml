@@ -1,5 +1,5 @@
 name: update_ticket_status
-runner_type: run-python
+runner_type: python-script
 description: Updates the status of the zendesk ticket with the given ID
 enabled: true
 entry_point: update_ticket_status.py
