@@ -1,5 +1,5 @@
 name: search_tickets
-runner_type: run-python
+runner_type: python-script
 description: Searches tickets on Zendesk
 enabled: true
 entry_point: search_tickets.py
