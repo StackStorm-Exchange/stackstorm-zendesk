@@ -60,7 +60,7 @@ class ZendeskAction(Action):
     def search_tickets(self, query, search_type='ticket', limit=10):
         try:
             query_results = self.api_search(query, search_type)
-            results_clean = dict(map(lambda t: {
+            results_clean = list(map(lambda t: {
                 'ticket_id': t.id,
                 'ticket_url': self.url_for_ticket(t.id),
                 'ticket_status': t.status,
