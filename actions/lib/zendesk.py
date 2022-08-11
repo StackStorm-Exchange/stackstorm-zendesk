@@ -60,14 +60,14 @@ class ZendeskAction(Action):
     def search_tickets(self, query, search_type='ticket', limit=10):
         try:
             query_results = self.api_search(query, search_type)
-            results_clean = map(lambda t: {
+            results_clean = dict(map(lambda t: {
                 'ticket_id': t.id,
                 'ticket_url': self.url_for_ticket(t.id),
                 'ticket_status': t.status,
                 'subject': self.clean_response(t.subject),
                 'description': self.clean_response(t.description)},
                 list(query_results)[:limit]
-            )
+            ))
             return {'search_results': results_clean}
         except APIException:
             return {'error': 'Could not execute search for query: {}'.format(query)}
