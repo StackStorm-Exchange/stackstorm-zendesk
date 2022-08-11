@@ -13,3 +13,10 @@ parameters:
     type: string
     description: "The full description of the ticket"
     required: true
+  tags:
+    type: array
+    description: "Tags to add to the ticket on creation"
+    default: []
+  ticket_form_id:
+    type: string
+    description: "Ticket Form Id, if need to create ticket for specific form."

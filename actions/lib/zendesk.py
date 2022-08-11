@@ -35,8 +35,12 @@ class ZendeskAction(Action):
     def api_search(self, query, search_type):
         return self.api.search(query, type=search_type, sort_by='created_at', sort_order='desc')
 
-    def create_ticket(self, subject, description):
+    def create_ticket(self, subject, description, tags=None, ticket_form_id=None):
         ticket = Ticket(subject=subject, description=description)
+        if tags is not None:
+            ticket.tags = tags
+        if ticket_form_id is not None:
+            ticket.ticket_form_id = ticket_form_id
 
         try:
             created_ticket_audit = self.api.tickets.create(ticket)
@@ -44,6 +48,7 @@ class ZendeskAction(Action):
                 'ticket_id': created_ticket_audit.ticket.id,
                 'ticket_url': self.url_for_ticket(created_ticket_audit.ticket.id),
                 'subject': self.clean_response(subject),
+                'tags': created_ticket_audit.ticket.tags,
                 'description': self.clean_response(description)
             }
         except APIException:

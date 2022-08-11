@@ -6,5 +6,5 @@ __all__ = [
 
 
 class CreateTicketAction(ZendeskAction):
-    def run(self, subject, description):
-        return self.create_ticket(subject, description)
+    def run(self, subject, description, tags=None, ticket_form_id=None):
+        return self.create_ticket(subject, description, tags, ticket_form_id)
